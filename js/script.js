@@ -142,6 +142,7 @@ const modal = document.getElementById("projectModal");
 const modalClose = document.getElementById("modalClose");
 
 const modalImage = document.getElementById("modalImage");
+const modalVideo = document.getElementById("modalVideo");
 const modalTitle = document.getElementById("modalTitle");
 const modalDescription = document.getElementById("modalDescription");
 
@@ -156,11 +157,21 @@ projectButtons.forEach(button => {
 
         const title = button.dataset.title;
         const image = button.dataset.image;
+        const videoId = button.dataset.videoId;
         const description = button.dataset.description;
 
         modalTitle.textContent = title;
-        modalImage.src = image;
-        modalImage.alt = title;
+        if (videoId && videoId !== "YOUR_YOUTUBE_VIDEO_ID") {
+            modalImage.hidden = true;
+            modalVideo.hidden = false;
+            modalVideo.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?autoplay=1&rel=0`;
+        } else {
+            modalVideo.hidden = true;
+            modalVideo.src = "";
+            modalImage.hidden = false;
+            modalImage.src = image;
+            modalImage.alt = title;
+        }
         modalDescription.textContent = description;
 
         modal.classList.add("active");
@@ -178,6 +189,9 @@ function closeModal() {
 
     modal.classList.remove("active");
     modal.setAttribute("aria-hidden", "true");
+    modalVideo.src = "";
+    modalVideo.hidden = true;
+    modalImage.hidden = false;
 
     document.body.style.overflow = "";
 
