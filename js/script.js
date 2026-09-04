@@ -5,14 +5,20 @@
 const menuBtn = document.getElementById("menuBtn");
 const nav = document.getElementById("nav");
 
+function setMenuState(isOpen) {
+    nav.classList.toggle("active", isOpen);
+    menuBtn.setAttribute("aria-expanded", String(isOpen));
+    menuBtn.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+}
+
 menuBtn.addEventListener("click", () => {
-    nav.classList.toggle("active");
+    setMenuState(!nav.classList.contains("active"));
 });
 
 document.querySelectorAll(".nav-link").forEach(link => {
 
     link.addEventListener("click", () => {
-        nav.classList.remove("active");
+        setMenuState(false);
     });
 
 });
@@ -46,6 +52,7 @@ const savedTheme = localStorage.getItem("theme");
 if (savedTheme === "dark") {
     document.body.classList.add("dark");
     themeBtn.textContent = "☀";
+    themeBtn.setAttribute("aria-label", "Enable light mode");
 }
 
 themeBtn.addEventListener("click", () => {
@@ -55,12 +62,14 @@ themeBtn.addEventListener("click", () => {
     if (document.body.classList.contains("dark")) {
 
         themeBtn.textContent = "☀";
+        themeBtn.setAttribute("aria-label", "Enable light mode");
 
         localStorage.setItem("theme", "dark");
 
     } else {
 
         themeBtn.textContent = "☾";
+        themeBtn.setAttribute("aria-label", "Enable dark mode");
 
         localStorage.setItem("theme", "light");
 
@@ -75,10 +84,14 @@ themeBtn.addEventListener("click", () => {
 
 const filterButtons = document.querySelectorAll(".filter-btn");
 const portfolioItems = document.querySelectorAll(".portfolio-item");
+const filterTimers = new Map();
 
 filterButtons.forEach(button => {
 
     button.addEventListener("click", () => {
+
+        filterTimers.forEach(timer => clearTimeout(timer));
+        filterTimers.clear();
 
         filterButtons.forEach(btn => {
             btn.classList.remove("active");
@@ -96,19 +109,21 @@ filterButtons.forEach(button => {
 
                 item.style.display = "block";
 
-                setTimeout(() => {
+                requestAnimationFrame(() => {
                     item.style.opacity = "1";
                     item.style.transform = "scale(1)";
-                }, 10);
+                });
 
             } else {
 
                 item.style.opacity = "0";
                 item.style.transform = "scale(.9)";
 
-                setTimeout(() => {
+                const timer = setTimeout(() => {
                     item.style.display = "none";
+                    filterTimers.delete(item);
                 }, 250);
+                filterTimers.set(item, timer);
 
             }
 
@@ -131,10 +146,13 @@ const modalTitle = document.getElementById("modalTitle");
 const modalDescription = document.getElementById("modalDescription");
 
 const projectButtons = document.querySelectorAll(".view-project");
+let lastFocusedElement = null;
 
 projectButtons.forEach(button => {
 
     button.addEventListener("click", () => {
+
+        lastFocusedElement = document.activeElement;
 
         const title = button.dataset.title;
         const image = button.dataset.image;
@@ -142,11 +160,14 @@ projectButtons.forEach(button => {
 
         modalTitle.textContent = title;
         modalImage.src = image;
+        modalImage.alt = title;
         modalDescription.textContent = description;
 
         modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
 
         document.body.style.overflow = "hidden";
+        modalClose.focus();
 
     });
 
@@ -156,8 +177,14 @@ projectButtons.forEach(button => {
 function closeModal() {
 
     modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
 
     document.body.style.overflow = "";
+
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
+        lastFocusedElement = null;
+    }
 
 }
 
@@ -173,8 +200,26 @@ modal.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
 
+    if (!modal.classList.contains("active")) return;
+
     if (event.key === "Escape") {
         closeModal();
+    }
+
+    if (event.key === "Tab") {
+        const focusable = modal.querySelectorAll(
+            'button:not([disabled]), [href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
     }
 
 });
@@ -247,12 +292,16 @@ contactForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
 
-    const name = document.getElementById("name").value;
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
 
     formMessage.textContent =
-        `Thank you, ${name}! Your message has been received.`;
+        "Your email app is opening with the message prepared. Send it there to complete your enquiry.";
 
-    contactForm.reset();
+    const emailBody = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+    window.location.href = `mailto:xzron.ss@email.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
 });
 
@@ -291,6 +340,7 @@ function updateActiveNav() {
 }
 
 window.addEventListener("scroll", updateActiveNav);
+updateActiveNav();
 
 
 // ===============================

@@ -61,6 +61,14 @@ button {
     cursor: pointer;
 }
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
 .container {
     width: min(1180px, 90%);
     margin: auto;
@@ -540,6 +548,10 @@ body.dark .header {
     opacity: 1;
 }
 
+.portfolio-item:focus-within .portfolio-overlay {
+    opacity: 1;
+}
+
 .view-project {
     border: 1px solid white;
     background: white;
@@ -637,6 +649,10 @@ body.dark .header {
 .read-more {
     display: inline-block;
     margin-top: 20px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
     font-weight: 700;
     font-size: 13px;
 }

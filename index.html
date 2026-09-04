@@ -41,19 +41,19 @@
             <a href="#experience" class="nav-link">Experience</a>
             <a href="#contact" class="nav-link">Contact</a>
 
-            <a href="documents/CV.pdf" class="nav-cv" target="_blank">
-                Download CV
+            <a href="mailto:xzron.ss@email.com?subject=CV%20request" class="nav-cv">
+                Request CV
             </a>
 
         </nav>
 
         <div class="nav-actions">
 
-            <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+            <button type="button" class="theme-btn" id="themeBtn" aria-label="Enable dark mode">
                 ☾
             </button>
 
-            <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-controls="nav" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -99,18 +99,15 @@
                     Explore My Work →
                 </a>
 
-                <a href="documents/CV.pdf" class="btn btn-outline" target="_blank">
-                    Download CV
+                <a href="mailto:xzron.ss@email.com?subject=CV%20request" class="btn btn-outline">
+                    Request CV
                 </a>
 
             </div>
 
             <div class="hero-social">
 
-                <a href="#" aria-label="LinkedIn">LinkedIn</a>
-                <a href="#" aria-label="Facebook">Facebook</a>
-                <a href="#" aria-label="Instagram">Instagram</a>
-                <a href="#" aria-label="YouTube">YouTube</a>
+                <a href="https://www.linkedin.com/in/suman-shrestha-communication-officer/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 
             </div>
 
@@ -432,23 +429,23 @@
 
         <div class="filter-buttons">
 
-            <button class="filter-btn active" data-filter="all">
+            <button type="button" class="filter-btn active" data-filter="all">
                 All
             </button>
 
-            <button class="filter-btn" data-filter="photography">
+            <button type="button" class="filter-btn" data-filter="photography">
                 Photography
             </button>
 
-            <button class="filter-btn" data-filter="writing">
+            <button type="button" class="filter-btn" data-filter="writing">
                 Writing
             </button>
 
-            <button class="filter-btn" data-filter="video">
+            <button type="button" class="filter-btn" data-filter="video">
                 Video
             </button>
 
-            <button class="filter-btn" data-filter="design">
+            <button type="button" class="filter-btn" data-filter="design">
                 Design
             </button>
 
@@ -466,7 +463,7 @@
 
                     <div class="portfolio-overlay">
 
-                        <button class="view-project"
+                        <button type="button" class="view-project"
                                 data-title="Field Documentation"
                                 data-image="assets/Bhagawati.JPG"
                                 data-description="Bhagawati Secondary School, Chhatar Rural Municipality, Tehrathum, Nepal.">
@@ -498,7 +495,7 @@
 
                     <div class="portfolio-overlay">
 
-                        <button class="view-project"
+                        <button type="button" class="view-project"
                                 data-title="Success Stories"
                                 data-image="assets/Janakalyan SS.JPG"
                                 data-description="Human-centered stories highlighting project achievements and community impact.">
@@ -530,7 +527,7 @@
 
                     <div class="portfolio-overlay">
 
-                        <button class="view-project"
+                        <button type="button" class="view-project"
                                 data-title="Project Documentary"
                                 data-image="assets/Lumpahabung SS.JPG"
                                 data-description="Short documentary highlighting project activities, beneficiaries and impact.">
@@ -562,7 +559,7 @@
 
                     <div class="portfolio-overlay">
 
-                        <button class="view-project"
+                        <button type="button" class="view-project"
                                 data-title="Communication Design"
                                 data-image="assets/Communication Materials.jpg"
                                 data-description="Visual communication materials designed for digital and print platforms.">
@@ -594,7 +591,7 @@
 
                     <div class="portfolio-overlay">
 
-                        <button class="view-project"
+                        <button type="button" class="view-project"
                                 data-title="Portrait Photography"
                                 data-image="assets/Student.jpg"
                                 data-description="Portrait photography for organizational profiles, stories and communication materials.">
@@ -626,9 +623,9 @@
 
                     <div class="portfolio-overlay">
 
-                        <button class="view-project"
+                        <button type="button" class="view-project"
                                 data-title="Project Documentation"
-                                data-image="assets/Janakalyan SS.JPG"
+                                data-image="assets/project documentation.jpg"
                                 data-description="Project documentation combining written content, photography and visual evidence.">
                             View Project
                         </button>
@@ -710,9 +707,12 @@
                         environment.
                     </p>
 
-                    <a href="#" class="read-more">
+                    <button type="button" class="read-more view-project"
+                            data-title="Creating Better Learning Environments"
+                            data-image="assets/classroom.jpg"
+                            data-description="A story about students, teachers and communities experiencing positive changes in their learning environment.">
                         Read Story →
-                    </a>
+                    </button>
 
                 </div>
 
@@ -746,9 +746,12 @@
                         projects and contribute to sustainable change.
                     </p>
 
-                    <a href="#" class="read-more">
+                    <button type="button" class="read-more view-project"
+                            data-title="Voices from the Community"
+                            data-image="assets/Childrens.JPG"
+                            data-description="Exploring how community members participate in projects and contribute to sustainable change.">
                         Read Story →
-                    </a>
+                    </button>
 
                 </div>
 
@@ -782,9 +785,12 @@
                         contribute to meaningful change in their communities.
                     </p>
 
-                    <a href="#" class="read-more">
+                    <button type="button" class="read-more view-project"
+                            data-title="Stories Behind the Change"
+                            data-image="assets/Ishibu SS.JPG"
+                            data-description="Personal stories showing how individuals contribute to meaningful change in their communities.">
                         Read Story →
-                    </a>
+                    </button>
 
                 </div>
 
@@ -939,7 +945,7 @@
                     <h4>Human Practice Foundation</h4>
 
                     <p>
-                        Supported the collection, compilation, analysis, and reporting of organizational educational data to facilitate effective program planning and decision-making..
+                        Supported the collection, compilation, analysis, and reporting of organizational educational data to facilitate effective program planning and decision-making.
                     </p>
 
                     <div class="tags">
@@ -1088,7 +1094,7 @@
                         ✉ xzron.ss@email.com
                     </a>
 
-                    <a href="tel:+9779800000000">
+                    <a href="tel:+9779842743833">
                         ☎ +977 9842743833
                     </a>
 
@@ -1179,7 +1185,7 @@
                     Send Message →
                 </button>
 
-                <p id="formMessage" class="form-message"></p>
+                <p id="formMessage" class="form-message" aria-live="polite"></p>
 
             </form>
 
@@ -1232,7 +1238,7 @@
 
         <p>
             Designed and developed by
-            <a href="https://www.linkedin.com/in/suman-shrestha-communication-officer/" target="_blank">
+            <a href="https://www.linkedin.com/in/suman-shrestha-communication-officer/" target="_blank" rel="noopener noreferrer">
                 Suman Shrestha
             </a>
         </p>
@@ -1244,11 +1250,11 @@
 
 <!-- ================= PROJECT MODAL ================= -->
 
-<div class="modal" id="projectModal">
+<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription" aria-hidden="true">
 
     <div class="modal-content">
 
-        <button class="modal-close" id="modalClose">
+        <button type="button" class="modal-close" id="modalClose" aria-label="Close project details">
             ×
         </button>
 
@@ -1273,7 +1279,7 @@
 
 <!-- BACK TO TOP -->
 
-<button class="back-top" id="backTop">
+<button type="button" class="back-top" id="backTop" aria-label="Back to top">
     ↑
 </button>
 
